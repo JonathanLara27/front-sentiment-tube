@@ -1,0 +1,75 @@
+<p>
+  <mat-toolbar color="primary">
+    <span>Sentiment Tube</span>
+  </mat-toolbar>
+</p>
+
+<!-- section para buscar el link -->
+
+<section class="d-flex justify-content-center mx-3 mt-5" [formGroup]="form">
+  <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-10 col-12">
+    <!-- <div class="form-floating">
+      <input type="text" class="form-control border-radius-50 fl-bg-gris1 fl-text-gris3 px-5" id="url"
+        placeholder="Ingresa el link a analizar" formControlName="link" (keydown.Enter)="onSubmit()">
+      <label for="url" class="d-flex align-items-center ms-3">
+        <mat-icon class="mx-2">search</mat-icon>
+        Ingresa el link a analizar
+      </label>
+    </div> -->
+    <mat-form-field class="w-100">
+      <mat-label>
+        <mat-icon class="mx-2">search</mat-icon>
+        Link
+      </mat-label>
+      <input matInput formControlName="link" placeholder="Ingresa el link de youtube a analizar" (keydown.Enter)="onSubmit()">
+      @if(isValidField('link',form)){
+        <mat-error>
+          {{getFieldErrors('link',form)}}
+        </mat-error>
+      }
+    </mat-form-field>
+    <!-- <div class="col-12">
+      {{ form.value | json }}
+    </div> -->
+  </div>
+</section>
+
+<!-- <section class="fixed-bottom">
+  <mat-grid-list [cols]="numberColsGraph()" [rowHeight]="rowHeightGraph()">
+    <mat-grid-tile>
+    </mat-grid-tile>
+    <mat-grid-tile>
+    </mat-grid-tile>
+    <mat-grid-tile>
+    </mat-grid-tile>
+  </mat-grid-list>
+</section> -->
+
+<section class="fixed-bottom">
+  <div class="row">
+    <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 p-2">
+      @if (optionsComments().data && !isLoading()) {
+        <app-simple-doughnut [options]="optionsComments()"></app-simple-doughnut>
+      } 
+      @if (!optionsComments().data && isLoading()) {
+        <app-loading-chart></app-loading-chart>
+      }
+    </div>
+    <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 p-2">
+      @if (optionsPositive().data && !isLoading()) {
+        <app-simple-doughnut [options]="optionsPositive()"></app-simple-doughnut>
+      } 
+      @if(!optionsPositive().data && isLoading()) {
+        <app-loading-chart></app-loading-chart>
+      }
+    </div>
+    <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 p-2">
+      @if (optionsNegative().data && !isLoading()) {
+        <app-simple-doughnut [options]="optionsNegative()"></app-simple-doughnut>
+      } 
+      @if(!optionsNegative().data && isLoading()) {
+        <app-loading-chart></app-loading-chart>
+      }
+    </div>
+  </div>
+</section>

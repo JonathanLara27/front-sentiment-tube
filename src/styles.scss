@@ -1,1 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+$rojo: #e44648;
+$verde: #35a025;
+
+.snackbar-error button::before {
+    background-color: $rojo !important;
+    color: white !important;
+    font-size: 22px;
+    font-family: "Material Icons";
+    content: "\e5cd";
+}
+
+
+.snackbar-error div {
+    background-color: $rojo !important;
+    color: white !important;
+    border-radius: 20px !important;
+}
+
+//* SnackbarSuccess
+
+.snackbar-success div {
+    background-color: $verde !important;
+    border-radius: 20px !important;
+}
+
+.snackbar-success button::before {
+    background-color: $verde !important;
+    color: white !important;
+    font-size: 22px;
+    font-family: "Material Icons";
+    content: "\e5cd";
+}
